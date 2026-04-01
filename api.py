@@ -3,18 +3,22 @@
        if you want to make a paid project dm us anytime.
 
 """
-
 from flask import Flask, request, jsonify
 import requests
-import random
+import threading
+import time
+import os
 
 app = Flask(__name__)
 
 GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
-GROQ_MODEL   = "llama-3.3-70b-versatile"
+GROQ_MODEL = "llama-3.3-70b-versatile"
+
+# Only set when using Render
+BASE_URL = "https://your-app-name.onrender.com"
 
 GROQ_API_KEYS = [
-    "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", # in first line add "g" letter like "gsk" in all key
+    "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",
     "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",
     "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",
     "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",
@@ -22,6 +26,7 @@ GROQ_API_KEYS = [
     "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",
     "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",
 ]
+
 
 def ask_groq(query):
     for key in GROQ_API_KEYS:
@@ -49,6 +54,7 @@ def ask_groq(query):
 
     return "Error: All API keys failed."
 
+
 @app.route("/", methods=["GET"])
 def teamdev():
     query = request.args.get("teamdev")
@@ -63,5 +69,32 @@ def teamdev():
         "response": response
     })
 
+
+@app.route("/ping", methods=["GET"])
+def ping():
+    return jsonify({
+        "status": "alive",
+        "service": "AI_PROJECT",
+        "time": int(time.time())
+    })
+
+
+# Self ping thread
+def self_ping():
+    if not BASE_URL:
+        return
+
+    while True:
+        try:
+            requests.get(f"{BASE_URL}/ping", timeout=10)
+        except:
+            pass
+        time.sleep(50)
+
+
+# Start background ping thread
+threading.Thread(target=self_ping, daemon=True).start()
+
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000) # Change Port If Port Is Already Using In Another Host!
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
