@@ -20,7 +20,7 @@ GROQ_API_KEYS = [
     "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",
     "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",
     "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",
-    "sk_jA36SCZXWhSoPiWrjsCfWGdyb3FYm9Q7BOPs3MgBmMn9XUrPXwQh",
+    "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",
 ]
 
 def ask_groq(query):
