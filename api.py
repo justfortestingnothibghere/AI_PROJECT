@@ -17,6 +17,7 @@ GROQ_MODEL = "llama-3.3-70b-versatile"
 # Only set when using Render
 BASE_URL = "https://your-app-name.onrender.com"
 
+# DONT CHANGE THOSE!
 GROQ_API_KEYS = [
     "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",
     "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",
@@ -74,7 +75,7 @@ def teamdev():
 def ping():
     return jsonify({
         "status": "alive",
-        "service": "AI_PROJECT",
+        "service": "AI_PROJECT - By @TEAM_X_OG",
         "time": int(time.time())
     })
 
