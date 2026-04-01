@@ -16,7 +16,7 @@ GROQ_MODEL   = "llama-3.3-70b-versatile"
 GROQ_API_KEYS = [
     "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", # in first line add "g" letter like "gsk" in all key
     "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",
-    "sk_Pqek9y4WkuRUZHeqiNDxWGdyb3FYjLEz0SVbjc45mZQYBVkC9Q6g",
+    "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",
     "sk_mPBKfX8eJylEbXBT79Q8WGdyb3FYuUnyEYeTSRY4ruLTpRC5iKiw",
     "sk_q3ZwOvZSaajGdQIi0rvJWGdyb3FYNuNOAImrd2AOg4yInr9w6fHq",
     "sk_5B3u3BDQO5W5feZLIQQXWGdyb3FYGXwvMNYExVU00iQTYd7RCMCw",
